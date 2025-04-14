@@ -20,8 +20,8 @@ public class Lieu {
     @Column(name = "CAPACITE", nullable = false)
     private Integer capacite;
 
-    @Column(name = "VILLE", nullable = false)
-    private String ville;
+    /**@Column(name = "VILLE", nullable = false)
+    private String ville;**/
 
     @Column(name = "ACTIVE", nullable = false)
     private Boolean active;
@@ -66,13 +66,13 @@ public class Lieu {
         this.active = active;
     }
 
-    public String getVille() {
+   /** public String getVille() {
         return ville;
     }
 
     public void setVille(String ville) {
         this.ville = ville;
-    }
+    }**/
 
     // Getters & Setters
 }
