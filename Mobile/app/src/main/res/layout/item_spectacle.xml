@@ -1,0 +1,67 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- Image à gauche -->
+        <ImageView
+            android:id="@+id/imageSpectacle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/violinist_concert_performance" />
+
+        <!-- Texte à droite -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="12dp">
+
+            <TextView
+                android:id="@+id/titre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Titre"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/heure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Heure"
+                android:textSize="14sp"
+                android:textColor="#777" />
+
+            <TextView
+                android:id="@+id/lieu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lieu"
+                android:textSize="16sp"
+                android:textColor="#444" />
+
+            <TextView
+                android:id="@+id/places"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Places disponibles"
+                android:textSize="14sp"
+                android:textColor="#888" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
