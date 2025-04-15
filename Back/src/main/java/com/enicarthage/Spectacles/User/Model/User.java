@@ -1,13 +1,28 @@
 package com.enicarthage.Spectacles.User.Model;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
+import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name = "CLIENT")
-public class User {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_seq")
+    @SequenceGenerator(name = "client_seq", sequenceName = "SEQ_IDCLT", allocationSize = 1)
     @Column(name = "IDCLT")
     private Long id;
 
@@ -25,6 +40,66 @@ public class User {
 
     @Column(name = "MOTP", nullable = false)
     private String motDePasse;
+
+    @Column(name = "RESET_TOKEN")
+    private String resetToken;
+
+    @Column(name = "TOKEN_EXPIRY_DATE")
+    private LocalDateTime tokenExpiryDate;
+
+    // Getters et Setters pour les nouveaux champs
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public LocalDateTime getTokenExpiryDate() {
+        return tokenExpiryDate;
+    }
+
+    public void setTokenExpiryDate(LocalDateTime tokenExpiryDate) {
+        this.tokenExpiryDate = tokenExpiryDate;
+    }
+
+    // Implémentation des méthodes de UserDetails
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Par défaut, tous les utilisateurs ont le rôle USER
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return motDePasse;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
     public Long getId() {
         return id;
