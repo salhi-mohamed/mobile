@@ -1,20 +1,26 @@
 package com.example.mobile;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.SpectacleViewHolder> {
 
+    private Context context;
     private final List<Spectacle> spectacles;
 
     // Constructeur
-    public SpectacleAdapter(List<Spectacle> spectacles) {
+    public SpectacleAdapter(Context context, List<Spectacle> spectacles) {
+        this.context = context;
         this.spectacles = spectacles;
     }
 
@@ -36,6 +42,13 @@ public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.Spec
         holder.heure.setText(spectacle.getHeure());
         holder.places.setText(spectacle.getPlaces());
         holder.imageSpectacle.setImageResource(spectacle.getImageResId());
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, SpectacleDetailActivity.class);
+            intent.putExtra("spectacle", spectacle); // spectacle est un objet
+            context.startActivity(intent);
+
+        });
+
 
     }
 
@@ -55,7 +68,8 @@ public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.Spec
             heure = itemView.findViewById(R.id.heure);
             lieu = itemView.findViewById(R.id.lieu);
             places = itemView.findViewById(R.id.places);
-            imageSpectacle = itemView.findViewById(R.id.imageSpectacle); // <-- ICI AUSSI
+            imageSpectacle = itemView.findViewById(R.id.imageSpectacle);
+
         }
     }
 }
