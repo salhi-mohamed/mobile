@@ -30,8 +30,12 @@ public class spectacles_list extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         spectacleList = new ArrayList<>();
-        spectacleList.add(new Spectacle("Spectacle Nouba", "Théâtre municipal de Carthage", "19:00", "30", R.drawable.nouba));
+        spectacleList.add(new Spectacle("عرض النوبة", "Théâtre municipal de Carthage", "19:00", "30", R.drawable.nouba));
         spectacleList.add(new Spectacle("Le Hakka Le Hakka", "Théatre municipal de Bizerte", "20:30", "15", R.drawable.lehakka));
+        spectacleList.add(new Spectacle("للاهم", "Théatre municipal del Jam", "20:30", "15", R.drawable.lellahom));
+        spectacleList.add(new Spectacle("عرض الزيارة", "Théatre municipal de Carthage", "20:30", "15", R.drawable.ziara));
+        spectacleList.add(new Spectacle("الحل في زحل", "Théatre municipal de Bizerte", "20:30", "15", R.drawable.samehdachrawi));
+
         // Tu peux en ajouter d'autres ici
 
         // 👉 Lier l'adapter
