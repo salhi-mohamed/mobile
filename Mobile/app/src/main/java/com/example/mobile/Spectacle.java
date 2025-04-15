@@ -6,11 +6,13 @@ public class Spectacle {
     private String heure;
     private String places;
 
-    public Spectacle(String titre, String lieu, String heure, String places) {
+    private int imageResId;
+    public Spectacle(String titre, String lieu, String heure, String places,int imageResId) {
         this.titre = titre;
         this.lieu = lieu;
         this.heure = heure;
         this.places = places;
+        this.imageResId = imageResId;
     }
 
     // Getters
@@ -18,4 +20,6 @@ public class Spectacle {
     public String getLieu() { return lieu; }
     public String getHeure() { return heure; }
     public String getPlaces() { return places; }
+
+    public int getImageResId() { return imageResId; }
 }

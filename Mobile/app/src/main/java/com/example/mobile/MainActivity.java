@@ -1,6 +1,9 @@
 package com.example.mobile;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +21,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button btnGoToSecond = findViewById(R.id.btnGoToSecond);
 
-        // 1. Initialiser la liste des spectacles
+        btnGoToSecond.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, login.class);
+                startActivity(intent);
+            }
+        });
+
+
+      /**  // 1. Initialiser la liste des spectacles
         List<Spectacle> spectacles = new ArrayList<>();
         spectacles.add(new Spectacle("Festival de carthage", "l'amphitheatre Carthage", "18:49", "150 Places"));
         spectacles.add(new Spectacle("Mazzika orchestra", "THEÂTRE MUNICIPAL DE TUNIS", "", "60 Places"));
@@ -35,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // 3. Lier l'Adapter au RecyclerView
-        recyclerView.setAdapter(new SpectacleAdapter(spectacles));
+        recyclerView.setAdapter(new SpectacleAdapter(spectacles));**/
     }
+
 }

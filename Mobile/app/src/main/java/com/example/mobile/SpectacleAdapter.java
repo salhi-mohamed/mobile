@@ -3,6 +3,7 @@ package com.example.mobile;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +35,8 @@ public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.Spec
         holder.lieu.setText(spectacle.getLieu());
         holder.heure.setText(spectacle.getHeure());
         holder.places.setText(spectacle.getPlaces());
+        holder.imageSpectacle.setImageResource(spectacle.getImageResId());
+
     }
 
     // Nombre total d'éléments
@@ -45,13 +48,14 @@ public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.Spec
     // ViewHolder (optimise le RecyclerView)
     static class SpectacleViewHolder extends RecyclerView.ViewHolder {
         TextView titre, lieu, heure, places;
-
+        ImageView imageSpectacle;
         public SpectacleViewHolder(@NonNull View itemView) {
             super(itemView);
             titre = itemView.findViewById(R.id.titre);
-            lieu = itemView.findViewById(R.id.lieu);
             heure = itemView.findViewById(R.id.heure);
+            lieu = itemView.findViewById(R.id.lieu);
             places = itemView.findViewById(R.id.places);
+            imageSpectacle = itemView.findViewById(R.id.imageSpectacle); // <-- ICI AUSSI
         }
     }
 }
