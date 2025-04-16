@@ -1,4 +1,4 @@
-package com.enicarthage.Spectacles.spectacle.Service;
+/*package com.enicarthage.Spectacles.spectacle.Service;
 
 import com.enicarthage.Spectacles.spectacle.Model.Spectacle;
 import com.enicarthage.Spectacles.spectacle.Repository.SpectacleRepository;
@@ -31,5 +31,4 @@ public class SpectacleService {
     public void deleteSpectacle(Long id) {
         spectacleRepository.deleteById(id);
     }
-}
-
+}*/

@@ -1,62 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".SpectacleDetailActivity"
-    android:background="#fff">
+    android:background="#F9F9F9"
+    android:padding="24dp">
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageAffiche"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/violinist_concert_performance" />
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="20dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center"
+        android:clipToPadding="false"
+        android:layout_marginHorizontal="8dp"
+        android:backgroundTint="#ffffff"
+        android:translationZ="2dp">
 
         <TextView
-            android:id="@+id/textTitre"
+            android:id="@+id/detail_titre"
+            android:text="Titre du Spectacle"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_marginTop="16dp"
+            android:textColor="#222"
+            android:layout_marginBottom="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/textLieu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/textHeure"
+            android:id="@+id/detail_date"
+            android:text="📅 Date :"
+            android:textSize="16sp"
+            android:textColor="#444"
+            android:layout_marginBottom="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/textPlaces"
+            android:id="@+id/detail_heureDebut"
+            android:text="⏰ Heure de début :"
+            android:textSize="16sp"
+            android:textColor="#444"
+            android:layout_marginBottom="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <TextView
+            android:id="@+id/detail_duree"
+            android:text="🕒 Durée :"
+            android:textSize="16sp"
+            android:textColor="#444"
+            android:layout_marginBottom="8dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rubriques"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp" />
+            android:layout_height="wrap_content" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerRubriques"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/detail_nbSpectateurs"
+            android:text="👥 Nombre de spectateurs :"
+            android:textSize="16sp"
+            android:textColor="#444"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        <!-- Tu peux ajouter ici une RecyclerView ou une liste pour les rubriques -->
+        <TextView
+            android:id="@+id/detail_lieu"
+            android:text="📍 Lieu :"
+            android:textSize="16sp"
+            android:textColor="#666"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </ScrollView>

@@ -30,8 +30,9 @@ public class Spectacle {
     private Integer nbSpectateurs;
 
     @ManyToOne
-    @JoinColumn(name = "IDLIEU", nullable = false)
+    @JoinColumn(name = "idlieu", nullable = false)
     private Lieu lieu;
+
 
     public Long getId() {
         return id;
@@ -61,6 +62,8 @@ public class Spectacle {
         return duree;
     }
 
+
+
     public void setDuree(BigDecimal duree) {
         this.duree = duree;
     }
@@ -76,6 +79,14 @@ public class Spectacle {
     public LocalDate getDate() {
         return date;
     }
+    @Transient
+    public String getNomLieu() {
+        if (lieu != null) {
+            return lieu.getNom();
+        } else {
+            return "Lieu non spécifié";
+        }
+    }
 
     public void setDate(LocalDate date) {
         this.date = date;
@@ -89,4 +100,3 @@ public class Spectacle {
         this.titre = titre;
     }
 }
-
