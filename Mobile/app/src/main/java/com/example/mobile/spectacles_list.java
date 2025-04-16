@@ -39,7 +39,7 @@ public class spectacles_list extends AppCompatActivity {
         // Tu peux en ajouter d'autres ici
 
         // 👉 Lier l'adapter
-        adapter = new SpectacleAdapter(spectacleList);
+        adapter = new SpectacleAdapter(this, spectacleList);
         recyclerView.setAdapter(adapter);
 
     }
