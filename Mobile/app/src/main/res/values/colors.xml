@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primaryColor">#2C3E50</color> <!-- Couleur principale du texte -->
+    <color name="secondaryColor">#7F8C8D</color> <!-- Couleur secondaire pour les informations supplémentaires -->
+    <color name="accentColor">#F4F6F9</color> <!-- Couleur de fond générale -->
+
+    <!-- Couleurs de fond et éléments UI -->
+    <color name="white">#FFFFFF</color> <!-- Blanc, utilisé pour les CardViews et arrière-plan -->
+    <color name="black">#000000</color> <!-- Noir, utilisé pour le texte des rubriques -->
+
+    <!-- Couleurs spécifiques pour les rubriques -->
+    <color name="rubriqueIconColor">#16A085</color> <!-- Une couleur attrayante pour les icônes -->
 </resources>
