@@ -1,78 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F9F9"
-    android:padding="24dp">
+    android:padding="16dp">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:padding="20dp"
-        android:elevation="4dp"
-        android:layout_marginBottom="16dp"
-        android:layout_gravity="center"
-        android:clipToPadding="false"
-        android:layout_marginHorizontal="8dp"
-        android:backgroundTint="#ffffff"
-        android:translationZ="2dp">
+        android:layout_height="wrap_content">
 
+        <!-- Titre du spectacle -->
         <TextView
-            android:id="@+id/detail_titre"
-            android:text="Titre du Spectacle"
-            android:textSize="24sp"
+            android:id="@+id/titre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="#222"
-            android:layout_marginBottom="16dp"
+            android:textSize="20sp" />
+
+        <!-- Date du spectacle -->
+        <TextView
+            android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <!-- Heure de début du spectacle -->
         <TextView
-            android:id="@+id/detail_date"
-            android:text="📅 Date :"
-            android:textSize="16sp"
-            android:textColor="#444"
-            android:layout_marginBottom="8dp"
+            android:id="@+id/heureDebut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <!-- Durée du spectacle -->
         <TextView
-            android:id="@+id/detail_heureDebut"
-            android:text="⏰ Heure de début :"
-            android:textSize="16sp"
-            android:textColor="#444"
-            android:layout_marginBottom="8dp"
+            android:id="@+id/duree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <!-- Nombre de spectateurs -->
         <TextView
-            android:id="@+id/detail_duree"
-            android:text="🕒 Durée :"
-            android:textSize="16sp"
-            android:textColor="#444"
-            android:layout_marginBottom="8dp"
+            android:id="@+id/nbSpectateurs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <!-- Lieu du spectacle -->
         <TextView
-            android:id="@+id/detail_nbSpectateurs"
-            android:text="👥 Nombre de spectateurs :"
-            android:textSize="16sp"
-            android:textColor="#444"
-            android:layout_marginBottom="8dp"
+            android:id="@+id/lieu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic" />
+
+        <!-- Section Rubriques -->
+        <TextView
+            android:layout_marginTop="20dp"
+            android:text="Rubriques:"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/detail_lieu"
-            android:text="📍 Lieu :"
-            android:textSize="16sp"
-            android:textColor="#666"
-            android:textStyle="italic"
-            android:layout_width="wrap_content"
+        <!-- Conteneur des rubriques -->
+        <LinearLayout
+            android:id="@+id/rubriquesContainer"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 </ScrollView>

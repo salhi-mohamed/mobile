@@ -32,7 +32,7 @@ public class login extends AppCompatActivity {
     TextView btnSignUp;
 
     // URL de votre API backend
-    private final String LOGIN_URL ="http://192.168.1.34:8091/api/auth/login";
+    private final String LOGIN_URL ="http://10.0.2.2:8091/api/auth/login";
 
 
     // File d'attente pour les requêtes réseau

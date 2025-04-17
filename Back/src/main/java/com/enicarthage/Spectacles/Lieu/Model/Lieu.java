@@ -17,14 +17,13 @@ public class Lieu {
     @Column(name = "ADRESSE", nullable = false)
     private String adresse;
 
+    @Column(name = "VILLE", nullable = false)
+    private String ville;
+
     @Column(name = "CAPACITE", nullable = false)
     private Integer capacite;
 
-    /**@Column(name = "VILLE", nullable = false)
-    private String ville;**/
 
-    @Column(name = "ACTIVE", nullable = false)
-    private Boolean active;
 
     public Long getId() {
         return id;
@@ -58,13 +57,7 @@ public class Lieu {
         this.capacite = capacite;
     }
 
-    public Boolean getActive() {
-        return active;
-    }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
 
    /** public String getVille() {
         return ville;

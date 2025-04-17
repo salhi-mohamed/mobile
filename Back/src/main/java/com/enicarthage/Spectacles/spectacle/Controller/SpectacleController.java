@@ -1,7 +1,11 @@
 package com.enicarthage.Spectacles.spectacle.Controller;
 
 import com.enicarthage.Spectacles.Lieu.Model.Lieu;
+import com.enicarthage.Spectacles.Rubrique.Models.Rubrique;
+import com.enicarthage.Spectacles.Rubrique.Models.RubriqueDTO;
+import com.enicarthage.Spectacles.Rubrique.Repository.RubriqueRepository;
 import com.enicarthage.Spectacles.spectacle.Model.Spectacle;
+import com.enicarthage.Spectacles.spectacle.Model.SpectacleAvecRubriquesDTO;
 import com.enicarthage.Spectacles.spectacle.Model.SpectacleDTO;
 import com.enicarthage.Spectacles.spectacle.Repository.SpectacleRepository;
 import com.enicarthage.Spectacles.Lieu.Repository.LieuRepository;
@@ -21,7 +25,7 @@ public class SpectacleController {
 
     @Autowired
     private LieuRepository lieuRepository;
-
+@Autowired private RubriqueRepository rubriqueRepository;
     // ➕ Ajouter un spectacle
     @PostMapping
     public ResponseEntity<?> ajouterSpectacle(@RequestBody Spectacle spectacle) {
@@ -118,5 +122,62 @@ public class SpectacleController {
         Lieu lieu = lieuOpt.get();
         return ResponseEntity.ok(lieu.getNom()); // Retourner le nom du lieu
     }
+    @PostMapping("/{id}/rubriques")
+    public ResponseEntity<?> ajouterRubriqueAuSpectacle(@PathVariable Long id, @RequestBody Rubrique rubrique) {
+        Optional<Spectacle> spectacleOpt = spectacleRepository.findById(id);
+        if (spectacleOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
+        Spectacle spectacle = spectacleOpt.get();
+        rubrique.setSpectacle(spectacle); // associer la rubrique au spectacle
+        rubriqueRepository.save(rubrique);
+
+        return ResponseEntity.ok("Rubrique ajoutée au spectacle ID " + id);
+    }
+    @GetMapping("/with-rubriques")
+    public List<SpectacleAvecRubriquesDTO> getSpectaclesAvecRubriques() {
+        List<Spectacle> spectacles = spectacleRepository.findAll();
+
+        return spectacles.stream().map(spectacle -> {
+            List<RubriqueDTO> rubriqueDTOs = spectacle.getRubriques().stream().map(rubrique ->
+                    new RubriqueDTO(
+                            rubrique.getId(),
+                            rubrique.getHeureDebut(),
+                            rubrique.getDuree(),
+                            rubrique.getType(),
+                            rubrique.getArtiste().getPrenom() + " " + rubrique.getArtiste().getNom()
+                    )
+            ).toList();
+
+            return new SpectacleAvecRubriquesDTO(
+                    spectacle.getId(),
+                    spectacle.getTitre(),
+                    spectacle.getDate(),
+                    spectacle.getHeureDebut(),
+                    spectacle.getDuree(),
+                    spectacle.getNbSpectateurs(),
+                    spectacle.getNomLieu(),
+                    rubriqueDTOs
+            );
+        }).toList();
+    }
+
+
+    // ❌ Supprimer une rubrique par son ID (lié à un spectacle)
+    @DeleteMapping("/{id}/rubriques/{rubriqueId}")
+    public ResponseEntity<?> supprimerRubrique(@PathVariable Long id, @PathVariable Long rubriqueId) {
+        Optional<Rubrique> rubriqueOpt = rubriqueRepository.findById(rubriqueId);
+        if (rubriqueOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Rubrique rubrique = rubriqueOpt.get();
+        if (!rubrique.getSpectacle().getId().equals(id)) {
+            return ResponseEntity.badRequest().body("Cette rubrique n'appartient pas au spectacle ID " + id);
+        }
+
+        rubriqueRepository.deleteById(rubriqueId);
+        return ResponseEntity.ok("Rubrique supprimée avec succès.");
+    }
 }

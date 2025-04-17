@@ -29,14 +29,14 @@ public class SpectacleListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         spectacleList = new ArrayList<>();
-        adapter = new SpectacleAdapter(spectacleList);
+        adapter = new SpectacleAdapter(spectacleList, this);
         recyclerView.setAdapter(adapter);
 
         fetchSpectacles();
     }
 
     private void fetchSpectacles() {
-        String url = "http://192.168.1.34:8091/api/spectacles";
+        String url = "http://10.0.2.2:8091/api/spectacles";
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {

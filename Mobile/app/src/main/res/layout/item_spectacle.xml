@@ -1,37 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="16dp"
-    android:background="#FFFFFF">
+    android:layout_margin="12dp"
+    card_view:cardCornerRadius="16dp"
+    card_view:cardElevation="6dp"
+    android:background="@android:color/white">
 
-    <!-- Image associée au spectacle -->
-    <ImageView
-        android:id="@+id/item_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/image_spectacle_default"
-        android:layout_marginEnd="16dp" />
-
-    <!-- Titre du spectacle -->
-    <TextView
-        android:id="@+id/item_titre"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Titre du Spectacle"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_gravity="center_vertical" />
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-    <!-- Lieu du spectacle -->
-    <TextView
-        android:id="@+id/item_lieu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nom du Lieu"
-        android:textSize="16sp"
-        android:textColor="#666666"
-        android:layout_gravity="center_vertical" />
+        <!-- Image circulaire du spectacle -->
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_spectacle_default"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/circle_image_background"
+            android:clipToOutline="true" />
 
-</LinearLayout>
+        <!-- Bloc de texte (Titre + Lieu) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <!-- Titre du spectacle -->
+            <TextView
+                android:id="@+id/item_titre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Titre du Spectacle"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#222222" />
+
+            <!-- Lieu du spectacle -->
+            <TextView
+                android:id="@+id/item_lieu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom du Lieu"
+                android:textSize="14sp"
+                android:textColor="#757575"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

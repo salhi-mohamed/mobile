@@ -1,53 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
->
+    android:layout_height="match_parent">
 
     <!-- Image en background -->
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="772dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
-
         android:src="@drawable/empty_theater_stage" />
 
-    <!-- Contenu par-dessus : logo + texte + bouton -->
+    <!-- Contenu par-dessus : Logo + Texte + Bouton + Toolbar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="top|center_horizontal"
         android:orientation="vertical"
-
         android:paddingTop="40dp">
 
+        <!-- Barre de navigation (Toolbar) -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#D32F2F"
+        android:title="Nos Spectacles"
+        android:titleTextColor="#FFFFFF"
+        android:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:gravity="center"
+        android:elevation="4dp"/>
+
+
         <!-- Logo -->
+        <!-- Vous pouvez ajouter une ImageView ou autre ici si nécessaire -->
 
         <!-- Nom de l'application -->
-
-        <!-- Espace vide pour faire descendre le bouton -->
-
-        <!-- Bouton en bas -->
-
         <TextView
             android:id="@+id/appName"
             android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="60dp"
             android:fontFamily="@font/aboreto"
             android:text="Spectacle Mood"
             android:textColor="#FFFFFF"
-            android:textSize="30dp"
-
-            android:textStyle="bold" />
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"/>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
+        <!-- Bouton en bas -->
         <Button
             android:id="@+id/btnGoToSecond"
             android:layout_width="wrap_content"
@@ -57,7 +63,7 @@
             android:backgroundTint="#A4161A"
             android:fontFamily="@font/aboreto"
             android:text="Commencer"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
     </LinearLayout>
 

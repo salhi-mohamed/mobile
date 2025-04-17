@@ -1,9 +1,11 @@
 package com.enicarthage.Spectacles.spectacle.Model;
 
 import com.enicarthage.Spectacles.Lieu.Model.Lieu;
+import com.enicarthage.Spectacles.Rubrique.Models.Rubrique; // 👉 Import de Rubrique
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "SPECTACLE")
@@ -33,6 +35,8 @@ public class Spectacle {
     @JoinColumn(name = "idlieu", nullable = false)
     private Lieu lieu;
 
+    @OneToMany(mappedBy = "spectacle", cascade = CascadeType.ALL)
+    private List<Rubrique> rubriques;
 
     public Long getId() {
         return id;
@@ -62,8 +66,6 @@ public class Spectacle {
         return duree;
     }
 
-
-
     public void setDuree(BigDecimal duree) {
         this.duree = duree;
     }
@@ -79,14 +81,6 @@ public class Spectacle {
     public LocalDate getDate() {
         return date;
     }
-    @Transient
-    public String getNomLieu() {
-        if (lieu != null) {
-            return lieu.getNom();
-        } else {
-            return "Lieu non spécifié";
-        }
-    }
 
     public void setDate(LocalDate date) {
         this.date = date;
@@ -98,5 +92,22 @@ public class Spectacle {
 
     public void setTitre(String titre) {
         this.titre = titre;
+    }
+
+    @Transient
+    public String getNomLieu() {
+        if (lieu != null) {
+            return lieu.getNom();
+        } else {
+            return "Lieu non spécifié";
+        }
+    }
+
+    public List<Rubrique> getRubriques() {
+        return rubriques;
+    }
+
+    public void setRubriques(List<Rubrique> rubriques) {
+        this.rubriques = rubriques;
     }
 }
