@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthenticationResponse {
-    private String token;
+    private String token;  // Le token JWT
+    private Long id;       // L'ID de l'utilisateur (client)
 }

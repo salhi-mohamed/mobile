@@ -31,11 +31,7 @@ public class login extends AppCompatActivity {
     Button btnSignIn;
     TextView btnSignUp;
 
-    // URL de votre API backend
-    private final String LOGIN_URL ="http://10.0.2.2:8091/api/auth/login";
-
-
-    // File d'attente pour les requêtes réseau
+    private final String LOGIN_URL = "http://10.0.2.2:8091/api/auth/login";
     private RequestQueue requestQueue;
 
     @Override
@@ -50,18 +46,15 @@ public class login extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btnSignIn);
         btnSignUp = findViewById(R.id.btnSignUp);
 
-        // Initialiser la file d'attente Volley
         requestQueue = Volley.newRequestQueue(this);
         Log.d(TAG, "File d'attente Volley initialisée");
 
-        // Navigation vers l'écran d'inscription
         btnSignUp.setOnClickListener(v -> {
             Log.d(TAG, "Clic sur btnSignUp - Navigation vers Compte");
             Intent intent = new Intent(login.this, Compte.class);
             startActivity(intent);
         });
 
-        // Gestion de la connexion
         btnSignIn.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString();
@@ -74,7 +67,6 @@ public class login extends AppCompatActivity {
                 return;
             }
 
-            // Créer l'objet JSON pour la requête
             JSONObject requestBody = new JSONObject();
             try {
                 requestBody.put("email", email);
@@ -86,7 +78,6 @@ public class login extends AppCompatActivity {
                 return;
             }
 
-            // Créer la requête POST avec headers
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.POST,
                     LOGIN_URL,
@@ -97,17 +88,26 @@ public class login extends AppCompatActivity {
                             Log.d(TAG, "Réponse reçue du serveur: " + response.toString());
                             try {
                                 String token = response.getString("token");
+                                long clientId = response.getLong("id"); // <-- Récupération ID client
+
                                 Log.d(TAG, "Token reçu: " + token);
+                                Log.d(TAG, "Client ID reçu: " + clientId);
 
-                                // Stocker le token si nécessaire (SharedPreferences, etc.)
+                                // Sauvegarde dans SharedPreferences
+                                getSharedPreferences("user_prefs", MODE_PRIVATE)
+                                        .edit()
+                                        .putString("token", token)
+                                        .putLong("client_id", clientId)
+                                        .apply();
 
-                                // Rediriger vers l'écran principal
+                                // Redirection
                                 Log.d(TAG, "Redirection vers SpectacleListActivity");
                                 Intent intent = new Intent(login.this, SpectacleListActivity.class);
                                 startActivity(intent);
                                 finish();
+
                             } catch (JSONException e) {
-                                Log.e(TAG, "Erreur parsing token: " + e.getMessage(), e);
+                                Log.e(TAG, "Erreur parsing token/id: " + e.getMessage(), e);
                                 Toast.makeText(login.this, "Erreur de traitement de la réponse", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -156,7 +156,7 @@ public class login extends AppCompatActivity {
         switch (statusCode) {
             case 403:
                 Toast.makeText(login.this,
-                        "Accès refusé - Vérifiez vos identifiants ou les permissions",
+                        "Accès refusé - Vérifiez vos identifiants",
                         Toast.LENGTH_SHORT).show();
                 break;
             case 404:
@@ -173,6 +173,8 @@ public class login extends AppCompatActivity {
                 Toast.makeText(login.this,
                         "Erreur serveur (HTTP " + statusCode + ")",
                         Toast.LENGTH_SHORT).show();
+                break;
         }
     }
+
 }

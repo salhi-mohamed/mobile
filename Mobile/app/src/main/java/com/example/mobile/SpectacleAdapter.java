@@ -29,7 +29,6 @@ public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.Spec
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_spectacle, parent, false);
         return new SpectacleViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull SpectacleViewHolder holder, int position) {
         Spectacle spectacle = spectacleList.get(position);
@@ -46,9 +45,13 @@ public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.Spec
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, SpectacleDetailActivity.class);
             intent.putExtra("spectacle_id", spectacle.getId()); // Passer l'ID du spectacle
+            intent.putExtra("user_id", (long) 123); // Remplacez ici le 123 par l'ID réel de l'utilisateur en tant que Long
             context.startActivity(intent);
         });
+
+    ;
     }
+
 
     private int getImageForSpectacle(Spectacle spectacle) {
         // Exemple d'attribution d'images par titre
