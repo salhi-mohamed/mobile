@@ -173,12 +173,24 @@ public class SpectacleDetailActivity extends AppCompatActivity {
                 + "&categorie=" + categorie;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null,
-                response -> Toast.makeText(this, "Réservation réussie ✅", Toast.LENGTH_SHORT).show(),
+                response -> {
+                    // Afficher un message de succès lorsque la réservation réussie
+                    Toast.makeText(this, "Réservation réussie ✅", Toast.LENGTH_SHORT).show();
+                },
                 error -> {
                     error.printStackTrace();
-                    Toast.makeText(this, "Erreur : " + error.getMessage(), Toast.LENGTH_LONG).show();
+                    // Vérifier si l'erreur est liée à une catégorie de billet non disponible
+                    if (error.networkResponse != null && error.networkResponse.statusCode == 400) {
+                        // Cas où la catégorie de billet n'est plus disponible
+                        Toast.makeText(this, "La catégorie de billet choisie n'est plus disponible.", Toast.LENGTH_LONG).show();
+                    } else {
+                        // Autres erreurs génériques
+                        Toast.makeText(this, "Erreur lors de la réservation. Vérifiez la disponibilité des billets.", Toast.LENGTH_LONG).show();
+                    }
                 });
 
         Volley.newRequestQueue(this).add(request);
     }
+
+
 }

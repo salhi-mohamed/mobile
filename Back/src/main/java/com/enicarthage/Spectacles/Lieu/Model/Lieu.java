@@ -1,6 +1,7 @@
 package com.enicarthage.Spectacles.Lieu.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "LIEU")
@@ -17,7 +18,7 @@ public class Lieu {
     @Column(name = "ADRESSE", nullable = false)
     private String adresse;
 
-    @Column(name = "VILLE", nullable = false)
+    @NotNull(message = "La ville ne peut pas être null")
     private String ville;
 
     @Column(name = "CAPACITE", nullable = false)
@@ -57,9 +58,12 @@ public class Lieu {
         this.capacite = capacite;
     }
 
+    public String getVille() {
+    return ville;
+    }
 
 
-   /** public String getVille() {
+    /** public String getVille() {
         return ville;
     }
 

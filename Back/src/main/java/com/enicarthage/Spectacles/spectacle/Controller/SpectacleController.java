@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -180,4 +182,41 @@ public class SpectacleController {
         rubriqueRepository.deleteById(rubriqueId);
         return ResponseEntity.ok("Rubrique supprimée avec succès.");
     }
+
+    // Recherche des spectacles selon plusieurs critères
+    @GetMapping("/search")
+    public ResponseEntity<List<Spectacle>> searchSpectacles(
+            @RequestParam(required = false) String titre,
+            @RequestParam(required = false) LocalDate date,
+            @RequestParam(required = false) BigDecimal heureDebut,
+            @RequestParam(required = false) String nomLieu,
+            @RequestParam(required = false) String ville) {
+
+        // ⚠️ Si vide, on les met à null
+        titre = (titre != null && !titre.trim().isEmpty()) ? titre : null;
+        nomLieu = (nomLieu != null && !nomLieu.trim().isEmpty()) ? nomLieu : null;
+        ville = (ville != null && !ville.trim().isEmpty()) ? ville : null;
+
+        List<Spectacle> spectacles = spectacleRepository.searchSpectacles(titre, date, heureDebut, nomLieu, ville);
+        return ResponseEntity.ok(spectacles);
+    }
+    @GetMapping("/search-global")
+    public ResponseEntity<List<SpectacleDTO>> searchGlobal(@RequestParam String query) {
+        List<Spectacle> spectacles = spectacleRepository.searchGlobal(query);
+
+        List<SpectacleDTO> dtoList = spectacles.stream().map(s -> new SpectacleDTO(
+                s.getId(),
+                s.getTitre(),
+                s.getDate(),
+                s.getHeureDebut(),
+                s.getDuree(),
+                s.getNbSpectateurs(),
+                s.getNomLieu()
+        )).toList();
+
+        return ResponseEntity.ok(dtoList);
+    }
+
+
+
 }

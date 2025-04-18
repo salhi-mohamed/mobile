@@ -4,6 +4,7 @@ import com.enicarthage.Spectacles.Lieu.Model.Lieu;
 import com.enicarthage.Spectacles.Lieu.Service.LieuService;
 import com.enicarthage.Spectacles.spectacle.Model.SpectacleDTO;
 import com.enicarthage.Spectacles.spectacle.Repository.SpectacleRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -45,9 +46,9 @@ public class LieuController {
         return lieuService.searchByNom(nom);
     }
 
+
     @PostMapping("/add")
-    public Lieu save(@RequestBody Lieu lieu) {
-        System.out.println("🔍 Reçu : " + lieu.getNom() + ", " + lieu.getAdresse());
+    public Lieu addLieu(@Valid @RequestBody Lieu lieu) {
         return lieuService.saveLieu(lieu);
     }
 

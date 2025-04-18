@@ -24,10 +24,13 @@ public class LieuService {
         return lieuRepository.findByNomContainingIgnoreCase(nom);
     }
 
+
     public Lieu saveLieu(Lieu lieu) {
+        if (lieu.getVille() == null || lieu.getVille().isEmpty()) {
+            throw new IllegalArgumentException("La ville ne peut pas être vide");
+        }
         return lieuRepository.save(lieu);
     }
-
     public void deleteLieu(Long id) {
         lieuRepository.deleteById(id);
     }

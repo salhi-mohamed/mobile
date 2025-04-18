@@ -7,7 +7,9 @@
     <!-- Couleurs de fond et éléments UI -->
     <color name="white">#FFFFFF</color> <!-- Blanc, utilisé pour les CardViews et arrière-plan -->
     <color name="black">#000000</color> <!-- Noir, utilisé pour le texte des rubriques -->
-
+    <color name="colorPrimary">#6200EE</color> <!-- Remplace par la couleur que tu veux -->
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
     <!-- Couleurs spécifiques pour les rubriques -->
     <color name="rubriqueIconColor">#16A085</color> <!-- Une couleur attrayante pour les icônes -->
 </resources>
