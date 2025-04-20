@@ -1,75 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0F0F0"
     android:padding="16dp">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <!-- Titre du spectacle -->
+        <!-- CardView avec cardCornerRadius -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:elevation="6dp"
+            android:backgroundTint="#FFFFFF"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/titre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:textColor="#212121"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Image sous le titre -->
+                <ImageView
+                    android:id="@+id/spectacleImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/image_spectacle_1"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="12dp"
+                android:layout_gravity="center"
+                android:background="@drawable/empty_theater_stage"
+                android:elevation="4dp" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/heureDebut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/duree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/nbSpectateurs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#666666" />
+
+                <TextView
+                    android:id="@+id/lieu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#888888"
+                    android:textStyle="italic"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <TextView
-            android:id="@+id/titre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Rubriques"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textColor="#333333"
+            android:layout_marginBottom="8dp" />
 
-        <!-- Date du spectacle -->
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Heure de début du spectacle -->
-        <TextView
-            android:id="@+id/heureDebut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Durée du spectacle -->
-        <TextView
-            android:id="@+id/duree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Nombre de spectateurs -->
-        <TextView
-            android:id="@+id/nbSpectateurs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Lieu du spectacle -->
-        <TextView
-            android:id="@+id/lieu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="italic" />
-
-        <!-- Section Rubriques -->
-        <TextView
-            android:layout_marginTop="20dp"
-            android:text="Rubriques:"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Conteneur des rubriques -->
         <LinearLayout
             android:id="@+id/rubriquesContainer"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
 
-        <!-- Bouton Réserver -->
         <Button
             android:id="@+id/btnReserver"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Réserver"
-            android:layout_marginTop="20dp" />
-
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#6200EE"
+            android:textAllCaps="false"
+            android:layout_marginTop="24dp"
+            android:padding="14dp"
+            android:elevation="6dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-medium" />
     </LinearLayout>
 </ScrollView>
