@@ -53,15 +53,9 @@ public class SpectacleDetailActivity extends AppCompatActivity {
                     .setItems(categories, (dialog, which) -> {
                         String categorieChoisie = categories[which];
 
-                        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
-                        long clientId = prefs.getLong("client_id", -1);
-
-                        if (clientId == -1) {
-                            Toast.makeText(this, "Erreur : utilisateur non connecté", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
+                        long clientId = 5L; // ID statique du client
                         showPaiementDialog(spectacleId, clientId, categorieChoisie);
+
                     })
                     .setNegativeButton("Annuler", null)
                     .show();

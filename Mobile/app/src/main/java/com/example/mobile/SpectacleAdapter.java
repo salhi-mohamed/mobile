@@ -45,7 +45,7 @@ public class SpectacleAdapter extends RecyclerView.Adapter<SpectacleAdapter.Spec
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, SpectacleDetailActivity.class);
             intent.putExtra("spectacle_id", spectacle.getId()); // Passer l'ID du spectacle
-            intent.putExtra("user_id", (long) 123); // Remplacez ici le 123 par l'ID réel de l'utilisateur en tant que Long
+            intent.putExtra("user_id", 5L); // ID statique du client
             context.startActivity(intent);
         });
 
