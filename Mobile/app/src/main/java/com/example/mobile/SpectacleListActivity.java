@@ -53,7 +53,7 @@ public class SpectacleListActivity extends AppCompatActivity {
     }
 
     private void fetchSpectaclesGlobal(String query) {
-        String url = "http://10.0.2.2:8091/api/spectacles/search-global?query=" + query;
+        String url = "http://192.168.1.52:8091/api/spectacles/search-global?query=" + query;
 
         Log.d("DEBUG_URL", "URL utilisée : " + url);
 

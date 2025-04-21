@@ -3,33 +3,94 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient">
+    android:background="@drawable/bg_gradient_festif">
 
+    <!-- Titre moderne -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOS SPECTACLES"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#FF5252"
+        android:fontFamily="sans-serif-condensed"
+        android:letterSpacing="0.1"
+        android:layout_marginTop="48dp"
+        android:shadowColor="#66000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- Slogan inspirant -->
+    <!-- Slogan stylisé -->
+    <TextView
+        android:id="@+id/sloganText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="✨ Vivez l'émotion du spectacle vivant !"
+        android:textSize="16sp"
+        android:textColor="#FF5252"
+        android:fontFamily="sans-serif-light"
+        android:textStyle="italic"
+        android:layout_marginTop="8dp"
+        android:shadowColor="#55000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Ligne décorative sous le slogan -->
+    <View
+        android:id="@+id/lineSeparator"
+        android:layout_width="120dp"
+        android:layout_height="2dp"
+        android:background="#FF5252"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:alpha="0.8"
+        app:layout_constraintTop_toBottomOf="@id/sloganText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- SearchView stylé -->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:queryHint="🎭 Rechercher un spectacle magique..."
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:queryHint="Rechercher un spectacle magique..."
         android:iconifiedByDefault="false"
         android:layout_margin="16dp"
-        android:background="@drawable/search_view_funny"
-        android:elevation="6dp"
-        android:padding="10dp" />
+        android:background="@drawable/search_view_magique"
+        android:elevation="8dp"
+        android:padding="8dp"
+        android:textColorHint="@color/purple_700"
+        app:layout_constraintTop_toBottomOf="@id/lineSeparator"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
 
+
+    <!-- RecyclerView pour les spectacles -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="8dp"
+        android:padding="12dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:background="@drawable/recycler_bg_festive"
+        android:backgroundTint="@null"
+        android:forceDarkAllowed="false"
         app:layout_constraintTop_toBottomOf="@id/searchView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/recycler_background"
-        android:clipToPadding="false"
-        android:scrollbars="vertical" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
