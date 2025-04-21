@@ -32,7 +32,7 @@
         android:id="@+id/sloganText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="✨ Vivez l'émotion du spectacle vivant !"
+        android:text=" Vivez l'émotion du spectacle vivant !"
         android:textSize="16sp"
         android:textColor="#FF5252"
         android:fontFamily="sans-serif-light"
@@ -73,8 +73,8 @@
         android:padding="8dp"
         android:textColorHint="@color/purple_700"
         app:layout_constraintTop_toBottomOf="@id/lineSeparator"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <!-- RecyclerView pour les spectacles -->

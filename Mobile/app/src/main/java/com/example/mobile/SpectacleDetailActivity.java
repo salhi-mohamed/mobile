@@ -1,7 +1,9 @@
 package com.example.mobile;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -44,6 +46,19 @@ public class SpectacleDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Spectacle invalide", Toast.LENGTH_SHORT).show();
         }
 
+        // Ajout du lien vers le site web
+        TextView lienSiteWeb = findViewById(R.id.lienSiteWeb);
+        lienSiteWeb.setOnClickListener(v -> {
+            String url = "https://www.festival-officiel.com";
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Aucune application pour ouvrir le lien", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         Button btnReserver = findViewById(R.id.btnReserver);
         btnReserver.setOnClickListener(v -> {
             String[] categories = {"eco", "vip", "normal"};
@@ -60,7 +75,6 @@ public class SpectacleDetailActivity extends AppCompatActivity {
                     .setNegativeButton("Annuler", null)
                     .show();
         });
-
     }
 
     private void showPaiementDialog(long spectacleId, long clientId, String categorie) {
