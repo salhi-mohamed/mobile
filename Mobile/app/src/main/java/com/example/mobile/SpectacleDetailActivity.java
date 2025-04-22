@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,31 +67,61 @@ public class SpectacleDetailActivity extends AppCompatActivity {
 
     private void showCategorieDialog(long spectacleId) {
         String[] categories = {"eco", "vip", "normal"};
-        new AlertDialog.Builder(this)
-                .setTitle("Choisir une catégorie")
-                .setItems(categories, (dialog, which) -> showPaiementDialog(spectacleId, 5L, categories[which]))
+        String[] displayNames = {
+                "💸 Économique",
+                "👑 VIP",
+                "🎫 Standard"
+        };
+
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_categories, null);
+        ListView listView = dialogView.findViewById(R.id.categoryList);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_list_item_1, displayNames) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView view = (TextView) super.getView(position, convertView, parent);
+                view.setTextSize(18);
+                view.setPadding(32, 24, 32, 24);
+                view.setTextColor(Color.parseColor("#5D4037"));
+                return view;
+            }
+        };
+
+        listView.setAdapter(adapter);
+
+        AlertDialog dialog = new AlertDialog.Builder(this, R.style.FestiveDialogTheme)
+                .setView(dialogView)
                 .setNegativeButton("Annuler", null)
-                .show();
+                .create();
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            dialog.dismiss();
+            showPaiementDialog(spectacleId, 5L, categories[position]);
+        });
+
+        dialog.show();
     }
 
+
     private void showPaiementDialog(long spectacleId, long clientId, String categorie) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Informations de paiement");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.FestiveDialogTheme);
+        builder.setTitle("💳 Paiement sécurisé");
 
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(50, 40, 50, 10);
 
-        EditText nomProprietaire = createEditText("Nom du propriétaire");
-        EditText numeroCarte = createEditText("Numéro de carte");
+        EditText nomProprietaire = createStyledEditText("Nom du propriétaire");
+        EditText numeroCarte = createStyledEditText("Numéro de carte");
         numeroCarte.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
-        EditText dateExpiration = createEditText("Date d'expiration (MM/AA)");
+        EditText dateExpiration = createStyledEditText("Date d'expiration (MM/AA)");
 
-        layout.addView(createLabel("Nom du propriétaire :"));
+        layout.addView(createLabel("👤 Nom du propriétaire :"));
         layout.addView(nomProprietaire);
-        layout.addView(createLabel("Numéro de carte :"));
+        layout.addView(createLabel("💳 Numéro de carte :"));
         layout.addView(numeroCarte);
-        layout.addView(createLabel("Date d'expiration (MM/AA) :"));
+        layout.addView(createLabel("📅 Date d'expiration (MM/AA) :"));
         layout.addView(dateExpiration);
 
         builder.setView(layout);
@@ -107,6 +139,15 @@ public class SpectacleDetailActivity extends AppCompatActivity {
         builder.setNegativeButton("Annuler", (dialog, which) -> dialog.dismiss());
         builder.show();
     }
+
+    private EditText createStyledEditText(String hint) {
+        EditText input = new EditText(this);
+        input.setHint(hint);
+        input.setPadding(20, 16, 20, 16);
+        input.setBackgroundResource(R.drawable.edittext_background); // Crée ce fichier XML ci-dessous
+        return input;
+    }
+
 
     private TextView createLabel(String text) {
         TextView label = new TextView(this);

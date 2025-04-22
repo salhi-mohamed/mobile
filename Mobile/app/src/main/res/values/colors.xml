@@ -8,8 +8,8 @@
     <color name="white">#FFFFFF</color> <!-- Blanc, utilisé pour les CardViews et arrière-plan -->
     <color name="black">#000000</color> <!-- Noir, utilisé pour le texte des rubriques -->
     <color name="colorAccent">#03DAC5</color>
+    <color name="purple_500">#6200EE</color>
     <color name="purple_200">#BB86FC</color>
-
     <color name="colorPrimary">#FF9A8B</color>
     <color name="colorPrimaryDark">#FF6B95</color>
     <color name="textColorPrimary">#333333</color>

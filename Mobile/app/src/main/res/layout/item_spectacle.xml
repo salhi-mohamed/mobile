@@ -6,15 +6,15 @@
     android:layout_margin="12dp"
     card_view:cardCornerRadius="16dp"
     card_view:cardElevation="6dp"
-    android:background="#CCFFFFFF" >
+    android:background="#DBB5AD" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="#E8D8C3 ">
 
-        <!-- Image circulaire du spectacle -->
         <ImageView
             android:id="@+id/item_image"
             android:layout_width="80dp"
@@ -25,7 +25,6 @@
             android:background="@drawable/circle_image_background"
             android:clipToOutline="true" />
 
-        <!-- Bloc de texte (Titre + Lieu) -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"

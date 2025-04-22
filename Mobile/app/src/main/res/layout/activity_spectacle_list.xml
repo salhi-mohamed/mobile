@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#FFF8E7"
     android:padding="16dp"
     tools:context=".SpectacleListActivity">
 
-    <!-- Header festif -->
+    <!-- 🎭 Titre festif -->
     <TextView
         android:id="@+id/titleText"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="🎭 Tous les spectacles"
-        android:textColor="#D84315"
+        android:textColor="#BD0D47"
         android:textSize="26sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:paddingBottom="12dp"
-        android:fontFamily="sans-serif-medium" />
+        android:fontFamily="@font/playfair_display"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Search bar avec style moderne -->
+    <!-- 🔍 Search bar modernisée -->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:queryHint="Rechercher un spectacle..."
         android:background="@drawable/search_background"
-        android:iconifiedByDefault="false"
         android:elevation="4dp"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Liste des spectacles -->
+    <!-- 🎟️ Liste des spectacles -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingBottom="8dp"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
