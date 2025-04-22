@@ -20,9 +20,12 @@
         <activity android:name=".SpectacleDetailActivity" />
 
         <activity android:name=".login" android:exported="false" />
+        <activity android:name=".ConfirmationPaiementActivity" android:exported="false" />
+
         <activity android:name=".SpectacleListActivity" android:exported="false" />
         <activity android:name=".Compte" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

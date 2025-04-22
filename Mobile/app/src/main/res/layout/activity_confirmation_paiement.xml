@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF8E1"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_check_circle"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paiement confirmé ✅"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#4CAF50"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/infoSpectacle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/InfoTextStyle" />
+
+        <TextView
+            android:id="@+id/infoCategorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/InfoTextStyle" />
+
+        <TextView
+            android:id="@+id/infoClient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/InfoTextStyle" />
+
+        <TextView
+            android:id="@+id/infoReservationId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/InfoTextStyle" />
+
+        <Button
+            android:id="@+id/btnImprimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🖨️ Imprimer le reçu"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#FF9800"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+    </LinearLayout>
+</ScrollView>

@@ -66,16 +66,18 @@ public class SpectacleDetailActivity extends AppCompatActivity {
     }
 
     private void showCategorieDialog(long spectacleId) {
+        // Catégories et leurs prix
         String[] categories = {"eco", "vip", "normal"};
         String[] displayNames = {
-                "💸 Économique",
-                "👑 VIP",
-                "🎫 Standard"
+                "💸 Économique - 10€",
+                "👑 VIP - 50€",
+                "🎫 Normal - 20€"
         };
 
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_categories, null);
         ListView listView = dialogView.findViewById(R.id.categoryList);
 
+        // Adapter personnalisé pour afficher les catégories avec le prix
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, displayNames) {
             @Override
@@ -84,6 +86,7 @@ public class SpectacleDetailActivity extends AppCompatActivity {
                 view.setTextSize(18);
                 view.setPadding(32, 24, 32, 24);
                 view.setTextColor(Color.parseColor("#5D4037"));
+                view.setBackgroundResource(R.drawable.custom_rounded_background); // Utiliser un fond arrondi
                 return view;
             }
         };
@@ -95,16 +98,25 @@ public class SpectacleDetailActivity extends AppCompatActivity {
                 .setNegativeButton("Annuler", null)
                 .create();
 
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_rounded_background_dialog);
+
         listView.setOnItemClickListener((parent, view, position, id) -> {
             dialog.dismiss();
-            showPaiementDialog(spectacleId, 5L, categories[position]);
+            showPaiementDialog(spectacleId, 5L, categories[position], displayNames[position]);
+        });
+
+        dialog.setOnShowListener(dlg -> {
+            Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+            if (negativeButton != null) {
+                negativeButton.setTextColor(Color.parseColor("#F4511E"));
+            }
         });
 
         dialog.show();
     }
 
 
-    private void showPaiementDialog(long spectacleId, long clientId, String categorie) {
+    private void showPaiementDialog(long spectacleId, long clientId, String categorie, String displayNameWithPrice) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.FestiveDialogTheme);
         builder.setTitle("💳 Paiement sécurisé");
 
@@ -112,11 +124,13 @@ public class SpectacleDetailActivity extends AppCompatActivity {
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(50, 40, 50, 10);
 
+        // Champs de saisie stylisés
         EditText nomProprietaire = createStyledEditText("Nom du propriétaire");
         EditText numeroCarte = createStyledEditText("Numéro de carte");
         numeroCarte.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
         EditText dateExpiration = createStyledEditText("Date d'expiration (MM/AA)");
 
+        // Labels stylisés
         layout.addView(createLabel("👤 Nom du propriétaire :"));
         layout.addView(nomProprietaire);
         layout.addView(createLabel("💳 Numéro de carte :"));
@@ -125,20 +139,44 @@ public class SpectacleDetailActivity extends AppCompatActivity {
         layout.addView(dateExpiration);
 
         builder.setView(layout);
-        builder.setPositiveButton("Valider", (dialog, which) -> {
-            if (nomProprietaire.getText().toString().isEmpty() ||
-                    numeroCarte.getText().toString().isEmpty() ||
-                    dateExpiration.getText().toString().isEmpty()) {
 
-                Toast.makeText(this, "Veuillez remplir tous les champs.", Toast.LENGTH_SHORT).show();
-            } else {
-                reserverBillet(spectacleId, clientId, categorie);
+        // On ne définit pas l'action ici pour le bouton positif
+        builder.setPositiveButton("Valider", null);
+        builder.setNegativeButton("Annuler", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_rounded_background_dialog);
+
+        dialog.setOnShowListener(dlg -> {
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+            if (positiveButton != null) {
+                positiveButton.setTextColor(Color.parseColor("#F4511E"));
+
+                positiveButton.setOnClickListener(v -> {
+                    if (nomProprietaire.getText().toString().isEmpty() ||
+                            numeroCarte.getText().toString().isEmpty() ||
+                            dateExpiration.getText().toString().isEmpty()) {
+
+                        Toast.makeText(this, "Veuillez remplir tous les champs.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        dialog.dismiss(); // Fermer manuellement le dialog
+                        reserverBillet(spectacleId, clientId, categorie);
+                    }
+                });
+            }
+
+            if (negativeButton != null) {
+                negativeButton.setTextColor(Color.parseColor("#F4511E"));
             }
         });
 
-        builder.setNegativeButton("Annuler", (dialog, which) -> dialog.dismiss());
-        builder.show();
+        dialog.show();
     }
+
+
+
 
     private EditText createStyledEditText(String hint) {
         EditText input = new EditText(this);
@@ -250,7 +288,25 @@ public class SpectacleDetailActivity extends AppCompatActivity {
         String url = BASE_URL + "reservations?spectacleId=" + spectacleId + "&clientId=" + clientId + "&categorie=" + categorie;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null,
-                response -> Toast.makeText(this, "Réservation réussie ✅", Toast.LENGTH_SHORT).show(),
+                response -> {
+                    try {
+                        // On récupère les infos depuis la réponse de l'API
+                        long reservationId = response.getLong("id"); // ou autre champ ID
+                        String titreSpectacle = titre.getText().toString().replace("🎭 ", "");
+                      //  String nomClient = ""; // TODO: à remplacer dynamiquement si tu récupères l'utilisateur connecté
+
+                        // Démarrer l'activité de confirmation
+                        Intent intent = new Intent(this, ConfirmationPaiementActivity.class);
+                        intent.putExtra("titreSpectacle", titreSpectacle);
+                        intent.putExtra("categorie", categorie);
+                      //  intent.putExtra("nomClient", nomClient);
+                        intent.putExtra("reservationId", reservationId);
+                        startActivity(intent);
+
+                    } catch (Exception e) {
+                        Toast.makeText(this, "Erreur parsing réponse réservation", Toast.LENGTH_SHORT).show();
+                    }
+                },
                 error -> {
                     if (error.networkResponse != null && error.networkResponse.statusCode == 400) {
                         Toast.makeText(this, "La catégorie de billet n'est plus disponible.", Toast.LENGTH_LONG).show();
@@ -261,4 +317,5 @@ public class SpectacleDetailActivity extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(request);
     }
+
 }
