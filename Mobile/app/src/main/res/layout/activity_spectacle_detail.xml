@@ -1,152 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient_festif"
-    android:padding="16dp">
+    android:background="#FFF3E0">
 
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="16dp">
+        android:padding="24dp"
+        android:gravity="center_horizontal">
 
-        <!-- CardView avec cardCornerRadius -->
-        <androidx.cardview.widget.CardView
+        <TextView
+            android:id="@+id/titre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titre du spectacle"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#E65100"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:elevation="10dp"
-            android:backgroundTint="#FFFFFF"
-            app:cardCornerRadius="16dp">
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginBottom="20dp"
+            android:elevation="6dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:text="📅 Date :"
+                android:textSize="16sp"
+                android:textColor="#424242"
+                android:layout_marginBottom="4dp" />
 
-                <!-- Titre du spectacle -->
-                <TextView
-                    android:id="@+id/titre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="26sp"
-                    android:textColor="#FF4081"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="sans-serif-condensed" />
+            <TextView
+                android:id="@+id/heureDebut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🕒 Heure :"
+                android:textSize="16sp"
+                android:textColor="#424242"
+                android:layout_marginBottom="4dp" />
 
-                <!-- Image sous le titre -->
-                <ImageView
-                    android:id="@+id/spectacleImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:src="@drawable/image_spectacle_1"
-                    android:scaleType="centerCrop"
-                    android:layout_marginBottom="12dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/empty_theater_stage"
-                    android:elevation="4dp"
-                    android:clipToOutline="true"/>
+            <TextView
+                android:id="@+id/duree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⏱️ Durée :"
+                android:textSize="16sp"
+                android:textColor="#424242"
+                android:layout_marginBottom="4dp" />
 
-                <!-- Informations sous l'image -->
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#FF4081"
-                    android:layout_marginBottom="4dp"
-                    android:fontFamily="sans-serif-medium"/>
+            <TextView
+                android:id="@+id/nbSpectateurs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👥 Spectateurs :"
+                android:textSize="16sp"
+                android:textColor="#424242"
+                android:layout_marginBottom="4dp" />
 
-                <TextView
-                    android:id="@+id/heureDebut"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#FF4081"
-                    android:layout_marginBottom="4dp"
-                    android:fontFamily="sans-serif-medium"/>
+            <TextView
+                android:id="@+id/lieu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍 Lieu :"
+                android:textSize="16sp"
+                android:textColor="#424242" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/duree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#FF4081"
-                    android:layout_marginBottom="4dp"
-                    android:fontFamily="sans-serif-medium"/>
+        <TextView
+            android:id="@+id/lienSiteWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌐 Voir le site du festival"
+            android:textColor="#0288D1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
 
-                <TextView
-                    android:id="@+id/nbSpectateurs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#FF4081"
-                    android:layout_marginBottom="4dp"
-                    android:fontFamily="sans-serif-medium"/>
-
-                <TextView
-                    android:id="@+id/lieu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#888888"
-                    android:textStyle="italic"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif-light"/>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Rubriques section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rubriques"
+            android:text="🎭 Rubriques"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#FF4081"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="sans-serif-medium"/>
+            android:textColor="#D84315"
+            android:layout_marginBottom="12dp" />
 
         <LinearLayout
             android:id="@+id/rubriquesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-        <!-- Lien vers site web -->
-        <TextView
-            android:id="@+id/lienSiteWeb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Visiter le site officiel"
-            android:textSize="16sp"
-            android:textColor="#FF4081"
-            android:layout_marginTop="16dp"
-            android:drawableEnd="@drawable/ic_link"
-        android:drawablePadding="8dp"
-        android:fontFamily="sans-serif-medium"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?attr/selectableItemBackground"/>
-        <!-- Bouton Réserver -->
+            android:orientation="vertical"
+            android:layout_marginBottom="32dp" />
+
         <Button
             android:id="@+id/btnReserver"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Réserver"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#FF4081"
-            android:textAllCaps="false"
-            android:layout_marginTop="24dp"
-            android:padding="14dp"
-            android:elevation="8dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="sans-serif-medium"
-            android:textSize="16sp"/>
+            android:text="🎟 Réserver un billet"
+            android:textStyle="bold"
+            android:backgroundTint="#F4511E"
+            android:textColor="@android:color/white"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_background" />
 
     </LinearLayout>
 </ScrollView>

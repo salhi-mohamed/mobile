@@ -134,7 +134,7 @@ public class SpectacleDetailActivity extends AppCompatActivity {
     }
 
     private void fetchSpectacleDetails(long id) {
-        String url = "http://192.168.1.52:8091/api/spectacles/" + id;
+        String url = "http://10.0.2.2:8091/api/spectacles/" + id;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
@@ -183,7 +183,7 @@ public class SpectacleDetailActivity extends AppCompatActivity {
     }
 
     private void fetchBilletsDisponiblesParCategorie(long spectacleId) {
-        String url = "http://192.168.1.52:8091/api/billets/disponibles-par-categorie/" + spectacleId;
+        String url = "http://10.0.2.2:8091/api/billets/disponibles-par-categorie/" + spectacleId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
