@@ -146,27 +146,36 @@ public class SpectacleDetailActivity extends AppCompatActivity {
                         nbSpectateurs.setText("Nombre de spectateurs : " + response.getInt("nbSpectateurs"));
                         lieu.setText("Lieu : " + response.getString("nomLieu"));
 
+                        // Nettoyage avant ajout
+                        rubriquesContainer.removeAllViews();
+
                         JSONArray rubriques = response.getJSONArray("rubriques");
                         for (int i = 0; i < rubriques.length(); i++) {
                             JSONObject r = rubriques.getJSONObject(i);
 
+                            // Création d'une "carte" (LinearLayout avec fond et ombre)
+                            LinearLayout card = new LinearLayout(this);
+                            card.setOrientation(LinearLayout.VERTICAL);
+                            card.setBackgroundColor(Color.WHITE);
+                            card.setPadding(32, 24, 32, 24);
+                            card.setElevation(8f);
+                            card.setBackgroundResource(R.drawable.card_background); // optionnel
+                            LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT
+                            );
+                            cardParams.setMargins(0, 12, 0, 12);
+                            card.setLayoutParams(cardParams);
+
+                            // Contenu de la rubrique
                             TextView rubText = new TextView(this);
                             rubText.setText("🔸 " + r.getString("type") + " à " + r.getString("heureDebut") +
                                     " (" + r.getString("duree") + "h)");
                             rubText.setTextSize(16);
-                            rubText.setTextColor(Color.parseColor("#333333"));
-                            rubText.setBackgroundColor(Color.parseColor("#F1F1F1"));
-                            rubText.setPadding(24, 16, 24, 16);
-                            rubText.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
+                            rubText.setTextColor(Color.parseColor("#444444"));
 
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT
-                            );
-                            params.setMargins(0, 8, 0, 8);
-                            rubText.setLayoutParams(params);
-
-                            rubriquesContainer.addView(rubText);
+                            card.addView(rubText);
+                            rubriquesContainer.addView(card);
                         }
 
                     } catch (Exception e) {

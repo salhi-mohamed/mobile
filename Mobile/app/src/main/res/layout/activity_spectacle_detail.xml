@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF3E0">
 
     <LinearLayout
-        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -29,52 +27,47 @@
             android:orientation="vertical"
             android:background="@drawable/card_background"
             android:padding="16dp"
-            android:layout_marginBottom="20dp"
-            android:elevation="6dp">
+            android:elevation="6dp"
+            android:layout_marginBottom="20dp">
 
-            <TextView
-                android:id="@+id/date"
+            <TextView android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="📅 Date :"
                 android:textSize="16sp"
                 android:textColor="#424242"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/heureDebut"
+            <TextView android:id="@+id/heureDebut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="🕒 Heure :"
                 android:textSize="16sp"
                 android:textColor="#424242"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/duree"
+            <TextView android:id="@+id/duree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="⏱️ Durée :"
                 android:textSize="16sp"
                 android:textColor="#424242"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/nbSpectateurs"
+            <TextView android:id="@+id/nbSpectateurs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="👥 Spectateurs :"
                 android:textSize="16sp"
                 android:textColor="#424242"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/lieu"
+            <TextView android:id="@+id/lieu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="📍 Lieu :"
                 android:textSize="16sp"
-                android:textColor="#424242" />
+                android:textColor="#424242"/>
         </LinearLayout>
 
         <TextView
@@ -96,6 +89,7 @@
             android:textColor="#D84315"
             android:layout_marginBottom="12dp" />
 
+        <!-- Ici on mettra les cartes de rubriques dynamiquement -->
         <LinearLayout
             android:id="@+id/rubriquesContainer"
             android:layout_width="match_parent"
@@ -114,6 +108,5 @@
             android:padding="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/button_background" />
-
     </LinearLayout>
 </ScrollView>
